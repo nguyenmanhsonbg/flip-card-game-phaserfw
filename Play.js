@@ -16,7 +16,7 @@ export class Play extends Phaser.Scene {
   lives = 0;
   score = 0;
   level = 1;
-  maxLevel = 5;
+  maxLevel = 3;
   scoreText = null;
   hearts = []; // Initialize hearts array
 
@@ -182,19 +182,22 @@ export class Play extends Phaser.Scene {
 
   //#region  create grid cards
   createGridCards() {
-    const gridCardNames = Phaser.Utils.Array.Shuffle([
-      ...this.cardNames,
-      ...this.cardNames,
-    ]);
+    // Shuffle the cardNames array to randomize the order
+    const gridCardNames = Phaser.Utils.Array.Shuffle([...this.cardNames]);
 
     // Calculate the total number of pairs and total cards based on the level
     const numPairs = this.level * 2;
     // Each level increases by 4 cards (2 pairs)
 
-    const selectedCardNames = gridCardNames
-      .slice(0, numPairs)
-      .concat(gridCardNames.slice(0, numPairs));
-    const totalCards = selectedCardNames.length;
+    // Select the necessary number of pairs and ensure each pair is distinct
+    const selectedCardNames = gridCardNames.slice(0, numPairs);
+
+    // Duplicate the selected card names to create pairs and shuffle them
+    const duplicatedCardNames = Phaser.Utils.Array.Shuffle([
+      ...selectedCardNames,
+      ...selectedCardNames,
+    ]);
+    const totalCards = duplicatedCardNames.length;
 
     // Maximum number of columns
     const maxCols = 4;
@@ -212,7 +215,7 @@ export class Play extends Phaser.Scene {
       (128 + this.gridConfiguration.paddingY) / 2;
 
     console.log("====List card====");
-    return Phaser.Utils.Array.Shuffle(selectedCardNames).map((name, index) => {
+    return Phaser.Utils.Array.Shuffle(duplicatedCardNames).map((name, index) => {
       const row = Math.floor(index / numCols);
       const col = index % numCols;
       console.log("card name: " + name);
@@ -236,6 +239,7 @@ export class Play extends Phaser.Scene {
       return newCard;
     });
   }
+
   //#endregion
 
   createHearts() {
