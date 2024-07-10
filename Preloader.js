@@ -7,10 +7,15 @@ export class Preloader extends Phaser.Scene {
 
   preload() {
     this.load.setPath("assets/games/card-memory-game/");
+    //load menu asset
+    // this.load.image("menu-background", "background/menu/menu-background.png");
+    // this.load.image("play-button", "ui/play-button.png");
+    // this.load.image("instructions-button", "ui/instructions-button.png");
+    // this.load.image("quit-button", "ui/quit-button.png");
 
+    //load sound asset
     this.load.image("volume-icon", "ui/volume-icon.png");
     this.load.image("volume-icon_off", "ui/volume-icon_off.png");
-
     this.load.audio("theme-song", "audio/fat-caps-audionatix.mp3");
     this.load.audio("whoosh", "audio/whoosh.mp3");
     this.load.audio("card-flip", "audio/card-flip.mp3");
@@ -18,6 +23,8 @@ export class Preloader extends Phaser.Scene {
     this.load.audio("card-mismatch", "audio/card-mismatch.mp3");
     this.load.audio("card-slide", "audio/card-slide.mp3");
     this.load.audio("victory", "audio/victory.mp3");
+
+    //load game asset
     this.load.image("background");
     this.load.image("card-back", "cards/card-back.png");
     this.load.image("card-0", "cards/card-0.png");

@@ -23,8 +23,8 @@ export class Play extends Phaser.Scene {
   gridConfiguration = {
     x: 113,
     y: 102,
-    paddingX: 30,
-    paddingY: 30,
+    paddingX: 5,
+    paddingY: 5,
   };
 
   constructor() {
@@ -335,7 +335,6 @@ export class Play extends Phaser.Scene {
       }
     });
     //#endregion
-
     this.winnerText = this.add
       .text(
         this.sys.game.scale.width / 2,
